@@ -1,6 +1,7 @@
 package dao;
 
 import interfaces.CargoDAO;
+import interfaces.EmpleadoDAO;
 
 public abstract class DAOFactory {
 	// los posibles origenes de datos
@@ -16,6 +17,7 @@ public abstract class DAOFactory {
 	 * public abstract ArticuloDAO getArticuloDAO();
 	 * registramos nuestros daos
 	 */
+	public abstract EmpleadoDAO getEmpleado();
 	public abstract CargoDAO getCargo();
 	
 	public static DAOFactory getDAOFactory(int whichFactory){
