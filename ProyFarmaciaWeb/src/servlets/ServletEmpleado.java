@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.EmpleadoDTO;
 import service.EmpleadoService;
@@ -37,6 +38,8 @@ public class ServletEmpleado extends HttpServlet {
 		
 		if(objEmp!=null){
 			try {
+				HttpSession sesion = request.getSession();
+				sesion.setAttribute("usuario", objEmp);
 				request.getRequestDispatcher("holamundo.jsp").forward(request, response);
 			} catch (ServletException e) {
 				// TODO Auto-generated catch block
