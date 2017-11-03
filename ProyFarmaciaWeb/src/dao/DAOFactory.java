@@ -1,5 +1,7 @@
 package dao;
 
+import interfaces.CargoDAO;
+
 public abstract class DAOFactory {
 	// los posibles origenes de datos
 	public static final int MYSQL = 1;
@@ -14,7 +16,7 @@ public abstract class DAOFactory {
 	 * public abstract ArticuloDAO getArticuloDAO();
 	 * registramos nuestros daos
 	 */
-	
+	public abstract CargoDAO getCargo();
 	
 	public static DAOFactory getDAOFactory(int whichFactory){
 		switch(whichFactory){
