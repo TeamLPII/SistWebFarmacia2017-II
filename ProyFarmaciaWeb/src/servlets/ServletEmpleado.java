@@ -47,7 +47,9 @@ public class ServletEmpleado extends HttpServlet {
 			}
 		}else{
 			try {
+				request.setAttribute("msg", "Usuario y/o contraseña incorrectos...");
 				request.getRequestDispatcher("index.jsp").forward(request, response);
+				
 			} catch (ServletException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
