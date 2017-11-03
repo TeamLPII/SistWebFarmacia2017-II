@@ -25,7 +25,21 @@ public class ServletEmpleado extends HttpServlet {
     	String xtipo = request.getParameter("tipo");
     	if(xtipo.equals("login"))
     		iniciarSesion(request, response);
+    	else if(xtipo.equals("cerrarSesion"))
+    		cerrarSesion(request,response);
 		
+	}
+
+	private void cerrarSesion(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession sesion = request.getSession();
+		sesion.invalidate();
+		request.setAttribute("msg", "Inicia Sesión");
+		try {
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void iniciarSesion(HttpServletRequest request, HttpServletResponse response) {
