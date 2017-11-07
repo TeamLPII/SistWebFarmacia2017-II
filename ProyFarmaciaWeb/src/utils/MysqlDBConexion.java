@@ -11,7 +11,7 @@ public class MysqlDBConexion {
 		Connection cn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			cn = DriverManager.getConnection("jdbc:mysql://localhost/bd_farmacia2017", "root", "mysql");
+			cn = DriverManager.getConnection("jdbc:mysql://localhost/bd_farmacia2017?useSSL=false", "root", "mysql");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
