@@ -26,4 +26,8 @@ public class EmpleadoService {
 	public int actualizarEmpleado(EmpleadoDTO obj){
 		return objEmp.actualizarEmpleado(obj);
 	}
+	
+	public int registrarEmpleado(EmpleadoDTO obj){
+		return objEmp.registrarEmpleado(obj);
+	}
 }

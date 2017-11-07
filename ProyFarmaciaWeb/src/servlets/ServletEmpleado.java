@@ -2,8 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +37,46 @@ public class ServletEmpleado extends HttpServlet {
     		buscarEmpleado(request, response);
     	else if(xtipo.equals("actualizar"))
     		actualizarEmpleado(request, response);
+    	else if(xtipo.equals("registrar"))
+    		registrarEmpleado(request, response);
 		
+	}
+
+	private void registrarEmpleado(HttpServletRequest request, HttpServletResponse response) {
+		int cod;
+		String nombre, apPaterno, apMaterno;
+		String fecNacimiento, fecIngreso;
+		String usuario, clave;
+		CargoDTO cargo;
+		String telefono;
+		
+		cod =  Integer.parseInt(request.getParameter("txtcargo"));
+		
+		nombre = request.getParameter("txtnombre");
+		apPaterno = request.getParameter("txtappaterno");
+		apMaterno = request.getParameter("txtapmaterno");
+		fecNacimiento = request.getParameter("txtfechanac");
+		fecIngreso = request.getParameter("txtfecingreso");
+		usuario = request.getParameter("txtusuario");
+		clave = request.getParameter("txtclave");
+		cargo = servCargo.buscarCargo(cod);
+		telefono = request.getParameter("txttelefono");
+		
+		EmpleadoDTO obj = new EmpleadoDTO();
+		obj.setNombre(nombre);
+		obj.setPrimerAp(apPaterno);
+		obj.setSegundoAp(apMaterno);
+		obj.setFechaNac(LocalDate.parse(fecNacimiento));
+		obj.setFechaIngreso(LocalDate.parse(fecIngreso));
+		obj.setUsuario(usuario);
+		obj.setClave(clave);
+		obj.setCargo(cargo);
+		obj.setTelefono(telefono);
+		
+		int respuesta = servEmp.registrarEmpleado(obj);
+		System.out.println("Rpta.: "+respuesta);
+		
+		listarEmpleados(request, response);
 	}
 
 	private void actualizarEmpleado(HttpServletRequest request, HttpServletResponse response) {
