@@ -30,4 +30,8 @@ public class EmpleadoService {
 	public int registrarEmpleado(EmpleadoDTO obj){
 		return objEmp.registrarEmpleado(obj);
 	}
+	
+	public int eliminarEmpleado(int id){
+		return objEmp.eliminarEmpleado(id);
+	}
 }

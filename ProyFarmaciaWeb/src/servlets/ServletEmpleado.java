@@ -39,7 +39,16 @@ public class ServletEmpleado extends HttpServlet {
     		actualizarEmpleado(request, response);
     	else if(xtipo.equals("registrar"))
     		registrarEmpleado(request, response);
+    	else if(xtipo.equals("eliminar"))
+    		eliminarEmpleado(request, response);
 		
+	}
+
+	private void eliminarEmpleado(HttpServletRequest request, HttpServletResponse response) {
+		int cod = Integer.parseInt(request.getParameter("cod"));
+		
+		servEmp.eliminarEmpleado(cod);
+		listarEmpleados(request, response);
 	}
 
 	private void registrarEmpleado(HttpServletRequest request, HttpServletResponse response) {

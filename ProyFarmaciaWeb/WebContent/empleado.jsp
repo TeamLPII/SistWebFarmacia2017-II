@@ -40,7 +40,7 @@
 					out.println("<td>"+xEmp.getCargo().getNombre()+"</td>");
 					out.println("<td>"+xEmp.getUsuario()+"</td>");
 					out.println("<td><a href='ServletEmpleado?tipo=buscar&cod="+xEmp.getIdEmpleado()+"'>"+"Editar"+"</a></td>");
-					out.println("<td><a href='#'>"+"Eliminar"+"</a></td>");
+					out.println("<td><a href='ServletEmpleado?tipo=eliminar&cod="+xEmp.getIdEmpleado()+"'>"+"Eliminar"+"</a></td>");
 					out.println("</tr>");
 				}
 			}
