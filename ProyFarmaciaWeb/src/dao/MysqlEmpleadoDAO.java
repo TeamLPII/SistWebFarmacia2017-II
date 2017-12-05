@@ -20,7 +20,9 @@ public class MysqlEmpleadoDAO implements EmpleadoDAO {
 			+ "FechaNacimiento=?, FechaIngreso=?, Usuario=?, Clave=?, IdCargo=?, Telefono=? WHERE IdEmpleado=?";
 	private final String INSERTAREMPLEADO = "INSERT INTO Empleado "
 			+ "(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, FechaIngreso, Usuario, Clave, IdCargo, Telefono)"
-			+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ " VALUES(?, ?, ?, ?, ?, ?, MD5(?), ?, ?)";
+	private final String FILTRAREMPLEADO = 
+			"SELECT * from empleado where Nombre like ? or PrimerApellido like ? or SegundoApellido like ?";
 	
 	Connection cn = null;
 	PreparedStatement pstm = null;
@@ -191,6 +193,43 @@ public class MysqlEmpleadoDAO implements EmpleadoDAO {
 			MysqlDBConexion.cerrarConexion(cn, pstm, rs);
 		}
 		return estado;
+	}
+
+	@Override
+	public List<EmpleadoDTO> filtrarEmpleado(String xemp) {
+		MysqlCargoDAO cargo = new MysqlCargoDAO();
+		List<EmpleadoDTO> lista = new ArrayList<>();
+		EmpleadoDTO empleado = null;
+		try {
+			cn = MysqlDBConexion.getConexion();
+			pstm = cn.prepareStatement(FILTRAREMPLEADO);
+			pstm.setString(1, xemp+"%");
+			pstm.setString(2, xemp+"%");
+			pstm.setString(3, xemp+"%");
+			rs = pstm.executeQuery();
+			
+			while(rs.next()){
+				empleado = new EmpleadoDTO();
+				empleado.setIdEmpleado(rs.getInt(1));
+				empleado.setNombre(rs.getString(2));
+				empleado.setPrimerAp(rs.getString(3));
+				empleado.setSegundoAp(rs.getString(4));
+				empleado.setFechaNac(rs.getDate(5).toLocalDate());
+				empleado.setFechaIngreso(rs.getDate(6).toLocalDate());
+				empleado.setUsuario(rs.getString(7));
+				empleado.setClave(rs.getString(8));
+				empleado.setCargo(cargo.buscarCargo(rs.getInt(9)));
+				empleado.setTelefono(rs.getString(10));
+				
+				lista.add(empleado);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error al listar empleados.");
+		}finally {
+			MysqlDBConexion.cerrarConexion(cn, pstm, rs);
+		}
+		return lista;		
 	}
 
 }

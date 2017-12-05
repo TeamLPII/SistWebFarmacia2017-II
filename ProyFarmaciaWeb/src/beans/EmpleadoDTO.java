@@ -1,6 +1,10 @@
 package beans;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.ChronoPeriod;
+import java.time.temporal.ChronoUnit;
 
 public class EmpleadoDTO {
 	
@@ -74,6 +78,12 @@ public class EmpleadoDTO {
 	}
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	
+	public int getEdad(){
+		LocalDate fechaActual = LocalDate.now();
+		Period edad = Period.between(this.fechaNac, fechaActual);
+		return edad.getYears();
 	}
 
 }

@@ -11,4 +11,5 @@ public interface EmpleadoDAO {
 	public int registrarEmpleado(EmpleadoDTO obj);
 	public int actualizarEmpleado(EmpleadoDTO obj);
 	public int eliminarEmpleado(int id);
+	public List<EmpleadoDTO> filtrarEmpleado(String xemp); //Filtro por nombre y apellido
 }

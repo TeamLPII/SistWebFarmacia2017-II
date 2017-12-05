@@ -34,4 +34,8 @@ public class EmpleadoService {
 	public int eliminarEmpleado(int id){
 		return objEmp.eliminarEmpleado(id);
 	}
+	
+	public List<EmpleadoDTO> filtrarEmpleado(String xemp){
+		return objEmp.filtrarEmpleado(xemp);
+	}
 }
