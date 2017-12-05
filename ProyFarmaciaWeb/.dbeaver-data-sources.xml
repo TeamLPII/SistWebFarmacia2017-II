@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data-sources>
 	<data-source id="mysql5-15f800d979c-463870ffc6c066c0" provider="mysql" driver="mysql5" name="MySQL - localhost - bd_farmacia2017" save-password="true" show-system-objects="true" read-only="false">
-		<connection host="localhost" port="3306" server="" database="" url="jdbc:mysql://localhost:3306/" user="root" password="Hh0VMU0jpQ==" type="dev">
+		<connection host="localhost" port="3306" server="" database="bd_farmacia2017" url="jdbc:mysql://localhost:3306/bd_farmacia2017" user="root" password="Hh0VMU0jpQ==" type="dev">
 			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" save-password="false">
 				<property name="sshConnectTimeout" value="10000"/>
 				<property name="port" value="22"/>
