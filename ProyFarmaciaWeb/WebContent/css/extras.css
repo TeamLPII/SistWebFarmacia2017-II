@@ -1,0 +1,35 @@
+.jumbotron {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.dropdown-menu {
+	right: 0;
+	left: auto;
+}
+
+.container {
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#login-icon {
+	width: 48px;
+	height: 48px;
+}
+
+.delete {
+	cursor: pointer;
+}
+
+.chosen-results li {
+	font-size: 11px;
+}
+
+.table-produtos tbody tr td {
+	font-size: 12px;
+}

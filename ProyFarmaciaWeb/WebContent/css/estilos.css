@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap;
+}
+.header{
+    margin-bottom: 20px;
+}
+.main{
+    margin-bottom: 20px;
+}
+
+footer{
+    align-self: flex-end;
+    text-align: center;
+    width: 100%;
+}
+
+.imagen{
+    padding-top: 20px;
+    height: 50px;
+    width: auto;
+}
+
+.imagen img{
+    height: 40px;
+    width: auto;
+}
+
+.main button{
+    cursor: pointer;
+}
+.footer{
+    padding-top: 15px;
+}
+.footer h2{
+    font-size: 20px;
+}
+.usuario button{
+    cursor: pointer;
+}
+main span{
+    font-size: 30px;
+
+}
+.agregar .icono{
+    font-size: 20px;
+}
+
+
