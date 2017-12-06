@@ -6,7 +6,22 @@
 
 
 	$(document).ready(function () {
-		$('#cmbusercargo option[value="<%=empleado.getCargo().getIdCargo()%>"]').attr('selected', true);		
+		$('#cmbusercargo option[value="<%=empleado.getCargo().getIdCargo()%>"]').attr('selected', true);
+		//Cuando se cierre el modal
+		/*$("#fm-delete").on('hidden.bs.modal',function(){
+			$.ambiance({
+			       message: "Prueba del mensaje",
+			       title: "Éxito! Borrado correctamente",
+			       type: "success"
+			    });
+		});*/
+		$('#btneliminaremp').on('click',function(){
+			$.ambiance({
+			       message: "Prueba del mensaje",
+			       title: "Éxito! Borrado correctamente",
+			       type: "success"
+			    });
+		});
 	});
 
 
@@ -61,14 +76,12 @@ elimEmpleado=function(id){
 	$("#fm-delete").modal("show");
 	
 	$("#btneliminaremp").click(function() {
-		$("#fm-delete").modal("hide");		
+		$("#fm-delete").modal("hide");
+		
+		
 	});
 	
-	$.ambiance({
-	       message: "Prueba del mensaje",
-	       title: "Éxito! Borrado correctamente",
-	       type: "success"
-	    });
+	
 	
 	/*
 	$("#fm-delete").on('hidden.bs.modal',function(){
