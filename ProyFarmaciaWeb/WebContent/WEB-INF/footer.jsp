@@ -22,8 +22,11 @@
     <!-- <script src="js/app.js"></script> -->
 <!--     <script src="js/empleado.js"></script> -->
 	<script defer src="js/jquery.ambiance.js"></script>
+	<script defer src="js/jquery.bootstrap-growl.min.js"></script>
 	
     <script defer="defer" src="js/empleado.js"></script>
+    <script defer src="js/mantenimientoCliente.js"></script>
+	<script defer src="js/alertas.js"></script>
     
 </body>
 </html>

@@ -38,7 +38,7 @@ EmpleadoDTO usuario= null;
                     	<a class="nav-link" href="#">Nueva Venta</a>
                     </li>
                     <li class="<% out.print(item.equals("clientes")?"nav-item active":"nav-item");%>">
-                    	<a class="nav-link" href="#">Clientes</a>
+                    	<a class="nav-link" href="ServletCliente?tipo=listar">Clientes</a>
                     </li>
                  <%}else if(usuario.getCargo().getNombre().equalsIgnoreCase("almacenero")){ %>
                  	 <li class="<% out.print(item.equals("productos")?"nav-item active":"nav-item");%>">
@@ -52,7 +52,7 @@ EmpleadoDTO usuario= null;
                     	<a class="nav-link" href="#">Nueva Venta</a>
                     </li>
                     <li class="<% out.print(item.equals("clientes")?"nav-item active":"nav-item");%>">
-                    	<a class="nav-link" href="#">Clientes</a>
+                    	<a class="nav-link" href="ServletCliente?tipo=listar">Clientes</a>
                     </li>
                  <%}else{ %>
                  	<li class="<% out.print(item.equals("ventas")?"nav-item active":"nav-item");%>">

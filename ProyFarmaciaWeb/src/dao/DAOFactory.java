@@ -2,6 +2,7 @@ package dao;
 
 import interfaces.CargoDAO;
 import interfaces.EmpleadoDAO;
+import interfaces.ClientesDAO;
 
 public abstract class DAOFactory {
 	// los posibles origenes de datos
@@ -19,6 +20,7 @@ public abstract class DAOFactory {
 	 */
 	public abstract EmpleadoDAO getEmpleado();
 	public abstract CargoDAO getCargo();
+	public abstract ClientesDAO getCliente();
 	
 	public static DAOFactory getDAOFactory(int whichFactory){
 		switch(whichFactory){
