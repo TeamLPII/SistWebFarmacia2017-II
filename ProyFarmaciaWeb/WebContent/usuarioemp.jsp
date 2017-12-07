@@ -97,7 +97,7 @@
                 <input class="form-control" type="text" name="txtusertelefono" id="txtusertelefono" placeholder="Ingrese su número telefónico" value="<%=user.getTelefono()%>">
                 </div>
             </div>
-        <button type="submit" class="btn btn-success" form="frmuserempleado">Actualizar Datos</button>
+        <button type="submit" class="btn btn-success col-sm-12 col-lg-2" form="frmuserempleado">Actualizar Datos</button>
        <!-- </div>-->
        </form>
 
