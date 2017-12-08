@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS bd_farmacia2017;
-CREATE SCHEMA bd_farmacia2017;
-USE bd_farmacia2017;
+-- DROP SCHEMA IF EXISTS bd_farmacia2017;
+-- CREATE SCHEMA bd_farmacia2017;
+-- USE bd_farmacia2017;
 
 CREATE TABLE IF NOT EXISTS Laboratorio (
   IdLaboratorio   SMALLINT UNSIGNED AUTO_INCREMENT,
@@ -137,9 +137,11 @@ SELECT * FROM Producto;
 
 CREATE TABLE IF NOT EXISTS OrdenVenta (
   IdOrdenVenta    INT UNSIGNED AUTO_INCREMENT,
-  Fecha           DATETIME DEFAULT CURRENT_TIMESTAMP,
-  IdCliente		    SMALLINT UNSIGNED NOT NULL,
-  IdEmpleado 	    SMALLINT UNSIGNED NOT NULL,
+  FechaOrden      DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FechaPago		  DATETIME,
+  Estado		  INT,	
+  IdCliente		  SMALLINT UNSIGNED NOT NULL,
+  IdEmpleado 	  SMALLINT UNSIGNED NOT NULL,
   PRIMARY KEY (IdOrdenVenta),
   CONSTRAINT FK_OrdenVenta_Cliente FOREIGN KEY (IdCliente) REFERENCES Cliente (IdCliente),
   CONSTRAINT FK_OrdenVenta_Empleado FOREIGN KEY (IdEmpleado) REFERENCES Empleado (IdEmpleado),
@@ -148,12 +150,11 @@ CREATE TABLE IF NOT EXISTS OrdenVenta (
   INDEX FK_OrdenVenta_Empleado_Idx (IdEmpleado ASC));
 
 CREATE TABLE IF NOT EXISTS DetalleVenta (
-  IdDetalleVenta  INT UNSIGNED AUTO_INCREMENT, 
   IdOrdenVenta    INT UNSIGNED NOT NULL,
   IdProducto      INT UNSIGNED NOT NULL,
   Cantidad        INT UNSIGNED NOT NULL,
   Monto           DECIMAL(7,2) NOT NULL,
-  PRIMARY KEY (IdDetalleVenta, IdOrdenVenta),
+  PRIMARY KEY (IdProducto, IdOrdenVenta),
   CONSTRAINT FK_DetalleVenta_OrdenVenta FOREIGN KEY (IdOrdenVenta) REFERENCES OrdenVenta (IdOrdenVenta),
   CONSTRAINT FK_DetalleVenta_Producto FOREIGN KEY (IdProducto) REFERENCES Producto (IdProducto),  
   INDEX FK_DetalleVenta_Producto_Idx (IdProducto ASC));
