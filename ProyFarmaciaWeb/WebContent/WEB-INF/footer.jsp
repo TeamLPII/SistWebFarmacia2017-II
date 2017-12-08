@@ -26,6 +26,7 @@
 	
     <script defer="defer" src="js/empleado.js"></script>
     <script defer src="js/mantenimientoCliente.js"></script>
+    <script defer src="js/mantenimientoProducto.js"></script>
 	<script defer src="js/alertas.js"></script>
     
 </body>
