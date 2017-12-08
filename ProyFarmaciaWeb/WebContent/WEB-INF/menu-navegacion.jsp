@@ -29,7 +29,7 @@ EmpleadoDTO usuario= null;
                     	<a class="nav-link" href="ServletEmpleado?tipo=listar">Empleados</a>
                     </li>
                     <li class="<% out.print(item.equals("productos")?"nav-item active":"nav-item");%>">
-                    	<a class="nav-link" href="#">Productos</a>
+                    	<a class="nav-link" href="ServletProducto?tipo=listar">Productos</a>
                     </li>
                     <li class="<% out.print(item.equals("ventas")?"nav-item active":"nav-item");%>">
                     	<a class="nav-link" href="#">Ventas</a>
@@ -42,7 +42,7 @@ EmpleadoDTO usuario= null;
                     </li>
                  <%}else if(usuario.getCargo().getNombre().equalsIgnoreCase("almacenero")){ %>
                  	 <li class="<% out.print(item.equals("productos")?"nav-item active":"nav-item");%>">
-                    	<a class="nav-link" href="#">Productos</a>
+                    	<a class="nav-link" href="ServletProducto?tipo=listar">Productos</a>
                     </li>
                  <%}else if(usuario.getCargo().getNombre().equalsIgnoreCase("vendedor")){ %>
                  	<li class="<% out.print(item.equals("ventas")?"nav-item active":"nav-item");%>">
