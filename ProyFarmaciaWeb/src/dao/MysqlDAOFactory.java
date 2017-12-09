@@ -5,6 +5,7 @@ import interfaces.CategoriaDAO;
 import interfaces.ClientesDAO;
 import interfaces.EmpleadoDAO;
 import interfaces.LaboratorioDAO;
+import interfaces.OrdenVentaDAO;
 import interfaces.ProductoDAO;
 
 public class MysqlDAOFactory extends DAOFactory {
@@ -37,6 +38,11 @@ public class MysqlDAOFactory extends DAOFactory {
 	@Override
 	public ProductoDAO getProducto() {
 		return new MysqlProductoDAO();
+	}
+
+	@Override
+	public OrdenVentaDAO getOrdenVenta() {
+		return new MysqlOrdenVentaDAO();
 	}
 
 }

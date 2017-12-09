@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import beans.ClientesDTO;
 import service.ClienteService;
 
@@ -40,7 +42,22 @@ public class ServletCliente extends HttpServlet {
 			eliminar(request,response);
 		}else if(xtipo.equals("buscarNombre")){
 			listarPorNombre(request,response);
+		}else if(xtipo.equalsIgnoreCase("buscarDNI")){
+			buscarPorDNI(request,response);
 		}
+	}
+
+	private void buscarPorDNI(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String dni = request.getParameter("dni");
+		System.out.println("En el Servlet Buscar");
+		System.out.println("El DNI: "+dni);
+		ClientesDTO cliente = serviCliente.buscarPorDNI(dni);
+		
+		Gson gson = new Gson();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(gson.toJson(cliente));
+		
 	}
 
 	private void listarPorNombre(HttpServletRequest request, HttpServletResponse response) {

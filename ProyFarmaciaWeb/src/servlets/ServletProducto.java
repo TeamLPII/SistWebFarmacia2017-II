@@ -49,7 +49,34 @@ public class ServletProducto extends HttpServlet {
 			listarLaboratorio(request, response);
 		else if (xtipo.equals("buscarPorNombre"))
 			buscarPorNombre(request, response);
+		else if(xtipo.equalsIgnoreCase("listarPorJson"))
+			listarPorJson(request, response);
+		else if(xtipo.equalsIgnoreCase("buscarProJson"))
+			buscarProJson(request, response);
 		
+	}
+
+	private void buscarProJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		int cod = Integer.parseInt(request.getParameter("cod"));
+		ProductoDTO producto = serviProducto.buscaProducto(cod);
+		Gson gson = new Gson();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(gson.toJson(producto));
+	}
+
+	private void listarPorJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//String term = request.getParameter("term");
+		List<ProductoDTO> listadoPro = serviProducto.listaProducto();
+		//System.out.println("term");
+		for (ProductoDTO productoDTO : listadoPro) {
+			System.out.println("Producto: "+productoDTO.getNom_prod());
+			System.out.println("Producto: "+productoDTO.getCod_prod());
+		}
+		Gson gson = new Gson();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(gson.toJson(listadoPro));
 	}
 
 	private void buscarPorNombre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

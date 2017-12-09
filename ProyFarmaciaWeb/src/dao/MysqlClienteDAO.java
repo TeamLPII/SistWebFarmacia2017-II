@@ -206,4 +206,44 @@ public class MysqlClienteDAO implements ClientesDAO {
 		return data;
 	}
 
+	@Override
+	public ClientesDTO buscarPorDNI(String dni) {
+		ClientesDTO obj = null;
+		Connection cn=null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			cn = MysqlDBConexion.getConexion();
+			String sql = "select * from Cliente where DNI=?";
+			pstm = cn.prepareStatement(sql);
+			pstm.setString(1, dni);
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				obj = new ClientesDTO();
+				obj.setIdCliente(rs.getInt(1));
+				obj.setNombre(rs.getString(2));
+				obj.setPrimerApellido(rs.getString(3));
+				obj.setSegundoApellido(rs.getString(4));
+				obj.setDNI(rs.getString(5));
+				obj.setFechaRegistro(rs.getDate(6));
+				obj.setSexo(rs.getString(7));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstm != null)
+					pstm.close();
+				if (cn != null)
+					cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return obj;
+	}
+
 }

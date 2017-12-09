@@ -13,8 +13,27 @@
     <!-- <link rel="stylessheet" href="css/datapicker/bootstrap-datepicker.min.css"> -->
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="css/jquery.ambiance.css">
-    
-   
+    <link rel="stylesheet" href="css/easy-autocomplete.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> -->
+    <!-- <link rel='stylesheet prefetch' href='https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'> -->
+    <link rel="stylesheet" href="css/jquery-ui.css">
+   	  <style>
+  .custom-combobox {
+    position: relative;
+    display: inline-block;
+  }
+  .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+  }
+  </style>
     
 </head>
 <body>
