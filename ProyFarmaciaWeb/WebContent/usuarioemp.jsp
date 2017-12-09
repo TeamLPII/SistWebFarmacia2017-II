@@ -8,7 +8,8 @@
 	if(session.getAttribute("usuario") != null){
 		empleado = (EmpleadoDTO) session.getAttribute("usuario");
 		user = (EmpleadoDTO) request.getAttribute("empleado");
-	}else{
+	}
+	else{
 		//response.sendRedirect("index.jsp");
 		pageContext.forward("ServletEmpleado?tipo=cerrarSesion");
 	}

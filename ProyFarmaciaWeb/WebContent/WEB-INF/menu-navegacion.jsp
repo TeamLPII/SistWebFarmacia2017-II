@@ -35,7 +35,7 @@ EmpleadoDTO usuario= null;
                     	<a class="nav-link" href="#">Ventas</a>
                     </li>
                     <li class="<% out.print(item.equals("nueva venta")?"nav-item active":"nav-item");%>">
-                    	<a class="nav-link" href="#">Nueva Venta</a>
+                    	<a class="nav-link" href="nuevaventa.jsp">Nueva Venta</a>
                     </li>
                     <li class="<% out.print(item.equals("clientes")?"nav-item active":"nav-item");%>">
                     	<a class="nav-link" href="ServletCliente?tipo=listar">Clientes</a>
@@ -49,7 +49,7 @@ EmpleadoDTO usuario= null;
                     	<a class="nav-link" href="#">Ventas</a>
                     </li>
                     <li class="<% out.print(item.equals("nueva venta")?"nav-item active":"nav-item");%>">
-                    	<a class="nav-link" href="#">Nueva Venta</a>
+                    	<a class="nav-link" href="nuevaventa.jsp">Nueva Venta</a>
                     </li>
                     <li class="<% out.print(item.equals("clientes")?"nav-item active":"nav-item");%>">
                     	<a class="nav-link" href="ServletCliente?tipo=listar">Clientes</a>
