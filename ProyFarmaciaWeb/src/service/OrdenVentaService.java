@@ -16,11 +16,14 @@ public class OrdenVentaService {
 		return objVenta.insertarOrdenVenta(fecha, idCliente, idEmpleado);
 	}
 	
-	public void insertarDetalle(List<ProductoDTO> productos, OrdenVentaDTO ordenventa, int cantidad, double monto){
-		objVenta.insertarDetalle(productos, ordenventa, cantidad, monto);
+	public void insertarDetalle(int ordenVenta, int idproducto, int cantidad, double monto){
+		objVenta.insertarDetalle(ordenVenta, idproducto, cantidad, monto);
 	}
 	
 	public OrdenVentaDTO buscarOrdenVenta(int cod){
 		return objVenta.buscarOrdenVenta(cod);
+	}
+	public int getNextIDOrdenVenta(){
+		return  objVenta.getNextIDOrdenVenta();
 	}
 }

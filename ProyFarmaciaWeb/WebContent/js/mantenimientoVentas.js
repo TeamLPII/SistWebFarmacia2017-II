@@ -6,46 +6,120 @@ $(document).ready(function () {
 	llenarCombo();
 	//convertir a Tabla a Json
 	$('#btngenerarordenventa').on('click',function(){
-		var convertTablaToJson = function() {
+		/*var convertTablaToJson = function() {
 			var rows = [];
 			$('#tbldetalleventa tbody tr').each(function(i,n) {
 				var $row = $(n);
 				rows.push({
 					idOrdenVenta: $('#txtcodventa').val(),
 					idproducto: $row.find('td:eq(0)').text(),
-					/*producto: $row.find('td:eq(1)').text(),*/
+					producto: $row.find('td:eq(1)').text(),
 					cantidad: $row.find('td:eq(2)').text(),
 					monto: $row.find('td:eq(4)').text()
 				});
 			});
 			return JSON.stringify(rows);
-		};
+		};*/
 		/*var jsonVenta = '{"OrdenVenta":['+
 				'{"idOrdenVenta": "", "fechaOrden":}'
 			}';*/		
 
 		//función venta
 		$(function(){
-			console.log(convertTablaToJson ());
+			//console.log(convertTablaToJson ());
 			$.ajax({
 				url: 'ServletOrdenVenta',
 				type: 'GET',
+				data: "tipo=insVenta&idcliente="+$('#txtcodcliente').val()+"&fecha="+$('#txtfechaventa').val()+"&idempleado="+$('#txtcodempleado').val()+"&idventa="+$('#txtcodventa').val(),
 				datatype: 'json',
-				data: "tipo=insVenta&idcliente="+$('#txtcodcliente').val()+"&fecha="+$('#txtfechaventa').val()+"&idempleado="+$('#txtcodempleado').val(),
 				//contentType: 'application/json',
 				//mimeType: 'application/json',
 				success: function(datos) {
-					console.log(datos);
+					console.log("Los datos de respuesta del Servlet: "+datos);
+					if(datos!=''){
+						var tipo = datos.tipo;
+						console.log("El tipo de Json = "+datos.tipo)
+						if(tipo == 1){
+							//Si se generó correctamente la Orden de Venta
+							console.log(datos.msg);
+							$.ambiance({
+							       message: datos.msg,
+							       title: "Éxito! ",
+							       type: "success"
+							});
+							
+							//Procedemos a guardar los detalles
+							//Generamos el json de los detalles
+							var convertTablaToJson = function() {
+								var rows = [];
+								$('#tbldetalleventa tbody tr').each(function(i,n) {
+									var $row = $(n);
+									rows.push({
+										idOrdenVenta: $('#txtcodventa').val(),
+										idProducto: $row.find('td:eq(0)').text(),
+										/*producto: $row.find('td:eq(1)').text(),*/
+										cantidad: $row.find('td:eq(2)').text(),
+										monto: $row.find('td:eq(4)').text()
+									});
+								});
+								return JSON.stringify(rows);
+							};
+							//Enviamos al servlet los detalles para guardar en la BD
+							$(function(){
+								console.log(convertTablaToJson ());
+								$.ajax({
+									url: 'ServletDetalleVenta',
+									type: 'POST',
+									datatype: 'json',
+									data: convertTablaToJson(),
+									contentType: 'application/json',
+									mimeType: 'application/json',
+									success: function(datos) {
+										console.log(datos);
+										$.ambiance({
+										       message: datos.msg,
+										       title: "Atención! ",
+										       type: "success"
+										});
+										//window.location.replace("home.jsp");
+										//setTimeout( fn_redirigir_home,5000);
+										fn_redirigir_home();
+									},
+									error:function(data,status,er){
+										alert("error: "+data+" status: "+status+" er:"+er);
+										$.ambiance({
+										       message: datos.msg,
+										       title: "Error! ",
+										       type: "error"
+										});
+									}
+								});
+							});
+							//Fin Procedemos a guardar los detalles
+						}else{
+							console.log(datos.msg);
+							$.ambiance({
+							       message: datos.msg,
+							       title: "Error! ",
+							       type: "error"
+							});
+						}
+					}
 				},
 				error:function(data,status,er){
 					alert("error: "+data+" status: "+status+" er:"+er);
+					$.ambiance({
+					       message: datos.msg,
+					       title: "Error! ",
+					       type: "error"
+					});
 				}
 			});
 		});
 		
 		//Fin función venta
 		
-		$(function(){
+		/*$(function(){
 			console.log(convertTablaToJson ());
 			$.ajax({
 				url: 'ServletOrdenVenta',
@@ -61,7 +135,7 @@ $(document).ready(function () {
 					alert("error: "+data+" status: "+status+" er:"+er);
 				}
 			});
-		});//Fin función
+		});*///Fin función
 		
 		
 	});
@@ -274,4 +348,13 @@ function fn_suma_total(){
 	$('#txtigv').val(igv);
 	$('#txtsubtotal').val(neto);
 	$('#txttotal').val(suma);
+}
+
+function fn_redirigir_home(){
+	waitingDialog.show('Procesando datos y redirigiendo...');
+	
+	setTimeout(function () {
+		  waitingDialog.hide();
+		  window.location.replace("home.jsp");
+		}, 5000);
 }

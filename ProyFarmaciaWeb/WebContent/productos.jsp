@@ -10,31 +10,18 @@
 <jsp:include page="WEB-INF/menu-navegacion.jsp">
 	<jsp:param value="productos" name="item" />
 </jsp:include>
-	<!--Contenedor-->
-	<div class="container">
-	<jsp:include page="registrarProducto.jsp"></jsp:include>
-	<jsp:include page="editarProducto.jsp"></jsp:include>
-	<jsp:include page="eliminarProducto.jsp"></jsp:include>
-		<br>
-	<main class="container">
+<!--Contenedor-->
+<div class="container-fluid">
 	<div class="row">
-
-		<div class="col-12 bg-info py-2 mb-3">
-			<!-- <div class="input-group text-white">
-				<span class="oi oi-list " aria-hidden="true"> </span>
-				<h2 class="ml-3">Productos</h2>
-			</div> -->
-			<h2 class="titulo text-white " style="text-align: center">LISTADO DE
-				PRODUCTOS</h2>
-		</div>
-
-		<div class="col-md-2">
-			<button type="button" class="btn btn-success" data-toggle="modal"
-				data-target="#frm-agregar-producto" onclick="cargarCombos()">
-				<img src="svg/si-glyph-plus.svg" width="16px" height="16px">
-				Agregar
-			</button>
-		</div>
+		<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+				<ul class="nav nav-pills flex-column">
+					<li class="nav-item"><a class="nav-link active" href="#" data-toggle="modal" data-target="#frm-laboratorio">Agregar Laboratorio</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#frm-categoria">Agregar Categoria</a></li>
+				</ul>
+			</nav>
+	<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+		<button type="button" class="btn btn-success" data-toggle="modal" 
+		data-target="#frm-agregar-producto" onclick="cargarCombos()"><img src="svg/si-glyph-plus.svg" width="16px" height="16px"> Agregar</button>
 		<div class="col-md-10">
 			<nav class="navbar navbar-light float-right">
 				<form class="form-inline" action="ServletProducto?tipo=buscarPorNombre" method="post">
@@ -44,7 +31,7 @@
 				</form>
 			</nav>
 		</div>		
-	</div>
+	
 		<br>
 		<table class="table table-bordered table-hover">
 			<thead>
@@ -93,7 +80,14 @@
 				<li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
 			</ul>
 		</nav>
-	</div>
+	<jsp:include page="registrarProducto.jsp"></jsp:include>
+	<jsp:include page="editarProducto.jsp"></jsp:include>
+	<jsp:include page="eliminarProducto.jsp"></jsp:include>
+	<jsp:include page="agregarLaboratorio.jsp"></jsp:include>
+	<jsp:include page="agregarCategoria.jsp"></jsp:include>
 	</main>
+	</div>
+</div>
+	
 <!-- Pie de página -->
 <%@include file="WEB-INF/footer.jsp"%>

@@ -1,3 +1,4 @@
+<%@page import="service.OrdenVentaService"%>
 <%@page import="beans.EmpleadoDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.time.LocalDate"%>
@@ -15,6 +16,8 @@
 		//response.sendRedirect("index.jsp");
 		pageContext.forward("ServletEmpleado?tipo=cerrarSesion");
 	} */
+	OrdenVentaService servOV = new OrdenVentaService();
+	int codigoVenta = servOV.getNextIDOrdenVenta();
 %>
 
 
@@ -26,6 +29,10 @@
 </jsp:include>
 <%
 	LocalDate fecha = LocalDate.now();
+	EmpleadoDTO emp = null;
+	if(session.getAttribute("usuario")!=null){
+		emp = (EmpleadoDTO) session.getAttribute("usuario");
+	}
 %>
     <!--MAIN-->
 <main class="container" >
@@ -39,17 +46,17 @@
 
         <div class="col-12 form-group">
             <h3 class="">Venta Nro:</h3>
-            <input type="text" class="form-control col-6" name="txtcodventa" id="txtcodventa" placeholder="Nro. Venta">
+            <input type="text" class="form-control col-6" name="txtcodventa" id="txtcodventa" placeholder="Nro. Venta" value="<%=codigoVenta%>">
         </div>
 
         <div class="col-6 form-group">
-            <input type="hidden" name="txtcodempleado" id="txtcodempleado" value="">
+            <input type="hidden" name="txtcodempleado" id="txtcodempleado" value="<%=emp.getIdEmpleado()%>">
             <label class="form-control-label" for="txtempleado">Atendido por:</label>
-            <input type="text" class="form-control " placeholder="Empleado" name="txtempleado" id="txtempleado" readonly="readonly" value="">
+            <input type="text" class="form-control " placeholder="Empleado" name="txtempleado" id="txtempleado" readonly="readonly" value="<%=emp.getNombre()+" "+emp.getPrimerAp()+" "+emp.getSegundoAp()%>">
         </div>
         <div class="col-6 form-group">
             <label class="form-control-label" for="txtfechaventa">Fecha:</label>
-            <input type="text" class="form-control " placeholder="yyyy-mm-dd" id="txtfechaventa" name="txtfechaventa" value="">
+            <input type="text" class="form-control " placeholder="yyyy-mm-dd" id="txtfechaventa" name="txtfechaventa" value="<%=fecha%>">
         </div>
 
     </div>

@@ -9,8 +9,8 @@ public class OrdenVentaDTO {
 	private LocalDate fechaOrden;
 	private LocalDate fechaPago;
 	private int estado;
-	private ClientesDTO cliente;
-	private EmpleadoDTO empleado;
+	private int cliente;
+	private int empleado;
 	private List<DetalleVentaDTO> detalle = new ArrayList<>();
 	
 	public List<DetalleVentaDTO> getDetalle() {
@@ -43,16 +43,16 @@ public class OrdenVentaDTO {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	public ClientesDTO getCliente() {
+	public int getCliente() {
 		return cliente;
 	}
-	public void setCliente(ClientesDTO cliente) {
+	public void setCliente(int cliente) {
 		this.cliente = cliente;
 	}
-	public EmpleadoDTO getEmpleado() {
+	public int getEmpleado() {
 		return empleado;
 	}
-	public void setEmpleado(EmpleadoDTO empleado) {
+	public void setEmpleado(int empleado) {
 		this.empleado = empleado;
 	}
 	

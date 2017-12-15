@@ -51,25 +51,26 @@ public class MysqlOrdenVentaDAO implements OrdenVentaDAO {
 	}
 
 	@Override
-	public void insertarDetalle(List<ProductoDTO> productos, OrdenVentaDTO ordenventa, int cantidad, double monto) {
+	public void insertarDetalle(int ordenVenta, int idproducto, int cantidad, double monto) {
 		DetalleVentaDTO detalle = null;
 		try {
 			cn = MysqlDBConexion.getConexion();
 			pstm = cn.prepareStatement(INSERTARDETALLE);
 			
-			for (ProductoDTO productoDTO : productos) {
+			//for (ProductoDTO productoDTO : productos) {
 				detalle = new DetalleVentaDTO();
-				detalle.setIdOrdenVenta(ordenventa.getIdOrdenVenta());
+				//detalle.setIdOrdenVenta(ordenventa.getIdOrdenVenta());
 				//detalle.setProducto(productoDTO);
 				
-				pstm.setInt(1, detalle.getIdOrdenVenta());
+				pstm.setInt(1, ordenVenta);
 				//pstm.setInt(2, detalle.getProducto().getCod_prod());
+				pstm.setInt(2, idproducto);
 				pstm.setInt(3, cantidad);
 				pstm.setDouble(4, monto);
 				pstm.executeUpdate();
 				
-				ordenventa.addDetalle(detalle);
-			}
+				//ordenventa.addDetalle(detalle);
+			//}
 		} catch (Exception e) {
 			System.out.println("Error al insertar detalle. \n"+e);
 		}finally {
@@ -91,11 +92,13 @@ public class MysqlOrdenVentaDAO implements OrdenVentaDAO {
 			rs = pstm.executeQuery();
 			if(rs.next()){
 				ordenventa = new OrdenVentaDTO();
-				ordenventa.setFechaOrden(rs.getDate(1).toLocalDate());
-				ordenventa.setFechaPago(rs.getDate(2).toLocalDate());
-				ordenventa.setEstado(rs.getInt(3));
-				ordenventa.setCliente(cliente.buscarCliente(rs.getInt(4)));
-				ordenventa.setEmpleado(empleado.buscarEmpleado(rs.getInt(5)));
+				ordenventa.setIdOrdenVenta(rs.getInt(1));
+				ordenventa.setFechaOrden(rs.getDate(2).toLocalDate());
+				ordenventa.setFechaPago(rs.getDate(3).toLocalDate());
+				ordenventa.setEstado(rs.getInt(4));
+				ordenventa.setCliente(rs.getInt(5));
+				//ordenventa.setEmpleado(empleado.buscarEmpleado(rs.getInt(5)));
+				ordenventa.setEmpleado(rs.getInt(6));
 			}
 		} catch (Exception e) {
 			System.out.println("Error al buscar Orden de Venta. \n"+e);
@@ -103,6 +106,26 @@ public class MysqlOrdenVentaDAO implements OrdenVentaDAO {
 			MysqlDBConexion.cerrarConexion(cn, pstm, rs);
 		}
 		return ordenventa;
+	}
+
+	@Override
+	public int getNextIDOrdenVenta() {
+		int id = 0;
+		try {
+			cn = MysqlDBConexion.getConexion();
+			pstm = cn.prepareStatement("select auto_increment from information_schema.TABLES " + 
+					"where TABLE_SCHEMA = 'bd_farmacia2017' " + 
+					"and TABLE_NAME = 'ordenventa'");
+			rs = pstm.executeQuery();
+			if(rs.next()){
+				id = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("Error traer el próximo ID \n"+e);
+		}finally {
+			MysqlDBConexion.cerrarConexion(cn, pstm, rs);
+		}
+		return id;
 	}
 
 	/*@Override

@@ -25,6 +25,7 @@ public class ServletProducto extends HttpServlet {
 	ProductoService serviProducto = new ProductoService();
 	CategoriaService serviCat = new CategoriaService();
 	LaboratorioService serviLab = new LaboratorioService();
+	
   
     public ServletProducto() {
         super();
@@ -53,7 +54,29 @@ public class ServletProducto extends HttpServlet {
 			listarPorJson(request, response);
 		else if(xtipo.equalsIgnoreCase("buscarProJson"))
 			buscarProJson(request, response);
+		else if (xtipo.equals("registrarLaboratorio"))
+			registrarLaboratorio(request, response);
+		else if (xtipo.equals("registrarCategoria"))
+			registrarCategoria(request, response);
 		
+	}
+	
+	private void registrarCategoria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nom = request.getParameter("txtCategoria");
+		CategoriaDTO obj = new CategoriaDTO();
+		obj.setNom_cat(nom);
+		
+		//serviCat.registrarCategoria(obj);
+		listar(request, response);
+	}
+
+	private void registrarLaboratorio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nombre = request.getParameter("txtLaboratorio");
+		LaboratorioDTO obj = new LaboratorioDTO();
+		obj.setNom_lab(nombre);
+		
+		serviLab.registrarLaboratorio(obj);
+		listar(request, response);
 	}
 
 	private void buscarProJson(HttpServletRequest request, HttpServletResponse response) throws IOException {

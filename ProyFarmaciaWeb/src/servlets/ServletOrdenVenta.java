@@ -46,6 +46,8 @@ public class ServletOrdenVenta extends HttpServlet {
 		String xtipo = request.getParameter("tipo");
 		if(xtipo.equalsIgnoreCase("insVenta"))
 			insertarVenta(request, response);
+		else
+			insertarDetalle(request, response);
 		
 		
 		/*System.out.println("En el servlet");
@@ -74,16 +76,75 @@ public class ServletOrdenVenta extends HttpServlet {
 	}
 
 
-	private void insertarVenta(HttpServletRequest request, HttpServletResponse response) {
+	private void insertarDetalle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = request.getReader();
+		String detalle;
+		while((detalle = br.readLine())!=null) {
+			sb.append(detalle);
+		}
+		Gson gson = new Gson();
+		Type tipoListaDetalles = new TypeToken<List<DetalleVentaDTO>>(){}.getType();
+		List<DetalleVentaDTO> detalles = gson.fromJson(sb.toString(), tipoListaDetalles);
+		for (DetalleVentaDTO detalleVentaDTO : detalles) {
+			System.out.println("Idventa: "+detalleVentaDTO.getIdOrdenVenta());
+			System.out.println("Producto: "+detalleVentaDTO.getIdProducto());
+			System.out.println("Cantidad: "+detalleVentaDTO.getMonto());
+			System.out.println("Producto: "+detalleVentaDTO.getCantidad());
+		}
+	}
+
+
+	private void insertarVenta(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//int codventa = Integer.parseInt( request.getParameter("venta"));
 		System.out.println("En el insertar venta");
+		int codVenta = Integer.parseInt(request.getParameter("idventa"));
 		String fecha = request.getParameter("fecha");
 		int  idCliente = Integer.parseInt( request.getParameter("idcliente"));
 		int  idEmpleado = Integer.parseInt(request.getParameter("idempleado"));
+		System.out.println("===================");
+		System.out.println("Venta: "+codVenta);
 		System.out.println("Fecha: "+fecha);
 		System.out.println("Cliente: "+idCliente);
 		System.out.println("Empleado: "+idEmpleado);
 		//servVenta.insertarOrdenVenta(fecha, 2, 1);
+		int rpta = servVenta.insertarOrdenVenta(fecha, idCliente, idEmpleado);
+		/*OrdenVentaDTO objOV = servVenta.buscarOrdenVenta(codVenta);*/
+		
+		//Gson gson = new Gson();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		
+		JsonObject objJson = new JsonObject();
+		if(rpta != 0) {
+			//String mensaje = "{\"tipo\":\"1\",\"msg\":\"Orden de venta generado con éxito\"}";
+			objJson.addProperty("tipo", "1");
+			objJson.addProperty("msg", "Orden de venta generado con éxito");
+			String mensaje = objJson.toString();
+			response.getWriter().write(mensaje);
+		}else {
+			//String mensaje = "{\"tipo\":\"0\",\"msg\":\"Orden de venta generado no generado\"}";
+			objJson.addProperty("tipo", "0");
+			objJson.addProperty("msg", "Orden de venta no generado");
+			String mensaje = objJson.toString();
+			response.getWriter().write(mensaje);
+		}
+		
+		//response.getWriter().write(gson.toJson(objOV));
+		
+		//Probando el detalle
+		/*Gson gson = new Gson();
+		Type tipoListaDetalles = new TypeToken<List<DetalleVentaDTO>>() {}.getType();
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = request.getReader();
+		
+		String detalle;
+		while((detalle = br.readLine())!=null){
+			sb.append(detalle);
+			System.out.println(detalle);
+		}
+		List<DetalleVentaDTO> detalles = gson.fromJson(sb.toString(), tipoListaDetalles);*/
+		// Fin detalle
 	}
 
 

@@ -17,6 +17,8 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> -->
     <!-- <link rel='stylesheet prefetch' href='https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'> -->
     <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/templates/pace-theme-center-circle.tmpl.css">
+    
    	  <style>
   .custom-combobox {
     position: relative;
