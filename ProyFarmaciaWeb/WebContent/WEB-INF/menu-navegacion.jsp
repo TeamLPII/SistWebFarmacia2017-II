@@ -31,29 +31,41 @@ EmpleadoDTO usuario= null;
                     <li class="<% out.print(item.equals("productos")?"nav-item active":"nav-item");%>">
                     	<a class="nav-link" href="ServletProducto?tipo=listar">Productos</a>
                     </li>
-                    <li class="<% out.print(item.equals("ventas")?"nav-item active":"nav-item");%>">
-                    	<a class="nav-link" href="#">Ventas</a>
-                    </li>
+<%--                     <li class="<% out.print(item.equals("ventas")?"nav-item active":"nav-item");%>"> --%>
+<!--                     	<a class="nav-link" href="#">Ventas</a> -->
+<!--                     </li> -->
                     <li class="<% out.print(item.equals("nueva venta")?"nav-item active":"nav-item");%>">
-                    	<a class="nav-link" href="#">Nueva Venta</a>
+                    	<a class="nav-link" href="nuevaventa.jsp">Nueva Venta</a>
                     </li>
                     <li class="<% out.print(item.equals("clientes")?"nav-item active":"nav-item");%>">
                     	<a class="nav-link" href="ServletCliente?tipo=listar">Clientes</a>
                     </li>
+                    <li class="<% out.print(item.equals("realizarPago")?"nav-item active":"nav-item");%>"><a class="nav-link" 
+					href="realizarPago.jsp">Realizar Pago</a>
+					</li>
+					<li class="<% out.print(item.equals("reportes")?"nav-item active":"nav-item");%>"><a class="nav-link" href="ServletReportes?tipo=listarVendedor">Reportes</a>
+					</li>
                  <%}else if(usuario.getCargo().getNombre().equalsIgnoreCase("almacenero")){ %>
                  	 <li class="<% out.print(item.equals("productos")?"nav-item active":"nav-item");%>">
                     	<a class="nav-link" href="ServletProducto?tipo=listar">Productos</a>
                     </li>
+                    <li class="<% out.print(item.equals("reportes")?"nav-item active":"nav-item");%>"><a class="nav-link" href="ServletReportes?tipo=listarVendedor">Reportes</a>
+					</li>
                  <%}else if(usuario.getCargo().getNombre().equalsIgnoreCase("vendedor")){ %>
-                 	<li class="<% out.print(item.equals("ventas")?"nav-item active":"nav-item");%>">
+                 	<%-- <li class="<% out.print(item.equals("ventas")?"nav-item active":"nav-item");%>">
                     	<a class="nav-link" href="#">Ventas</a>
-                    </li>
+                    </li> --%>
                     <li class="<% out.print(item.equals("nueva venta")?"nav-item active":"nav-item");%>">
-                    	<a class="nav-link" href="#">Nueva Venta</a>
+                    	<a class="nav-link" href="nuevaventa.jsp">Nueva Venta</a>
                     </li>
                     <li class="<% out.print(item.equals("clientes")?"nav-item active":"nav-item");%>">
                     	<a class="nav-link" href="ServletCliente?tipo=listar">Clientes</a>
                     </li>
+                    <li class="<% out.print(item.equals("realizarPago")?"nav-item active":"nav-item");%>"><a class="nav-link" 
+					href="realizarPago.jsp">Realizar Pago</a>
+					</li>
+					<li class="<% out.print(item.equals("reportes")?"nav-item active":"nav-item");%>"><a class="nav-link" href="ServletReportes?tipo=listarVendedor">Reportes</a>
+					</li>
                  <%}else{ %>
                  	<li class="<% out.print(item.equals("ventas")?"nav-item active":"nav-item");%>">
                     	<a class="nav-link" href="#">Ventas</a>

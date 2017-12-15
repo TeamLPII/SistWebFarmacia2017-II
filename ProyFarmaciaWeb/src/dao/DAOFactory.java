@@ -4,7 +4,10 @@ import interfaces.CargoDAO;
 import interfaces.CategoriaDAO;
 import interfaces.EmpleadoDAO;
 import interfaces.LaboratorioDAO;
+import interfaces.OrdenVentaDAO;
 import interfaces.ProductoDAO;
+import interfaces.RealizarPagoDAO;
+import interfaces.ReportesDAO;
 import interfaces.ClientesDAO;
 
 public abstract class DAOFactory {
@@ -27,6 +30,9 @@ public abstract class DAOFactory {
 	public abstract CategoriaDAO getCategoria();
 	public abstract LaboratorioDAO getLaboratorio();
 	public abstract ProductoDAO getProducto();
+	public abstract OrdenVentaDAO getOrdenVenta();
+	public abstract RealizarPagoDAO getRealizarPago();
+	public abstract ReportesDAO getReportes();
 	
 	public static DAOFactory getDAOFactory(int whichFactory){
 		switch(whichFactory){

@@ -25,6 +25,7 @@ public class ServletProducto extends HttpServlet {
 	ProductoService serviProducto = new ProductoService();
 	CategoriaService serviCat = new CategoriaService();
 	LaboratorioService serviLab = new LaboratorioService();
+	
   
     public ServletProducto() {
         super();
@@ -49,7 +50,56 @@ public class ServletProducto extends HttpServlet {
 			listarLaboratorio(request, response);
 		else if (xtipo.equals("buscarPorNombre"))
 			buscarPorNombre(request, response);
+		else if(xtipo.equalsIgnoreCase("listarPorJson"))
+			listarPorJson(request, response);
+		else if(xtipo.equalsIgnoreCase("buscarProJson"))
+			buscarProJson(request, response);
+		else if (xtipo.equals("registrarLaboratorio"))
+			registrarLaboratorio(request, response);
+		else if (xtipo.equals("registrarCategoria"))
+			registrarCategoria(request, response);
 		
+	}
+	
+	private void registrarCategoria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nom = request.getParameter("txtCategoria");
+		CategoriaDTO obj = new CategoriaDTO();
+		obj.setNom_cat(nom);
+		
+		//serviCat.registrarCategoria(obj);
+		listar(request, response);
+	}
+
+	private void registrarLaboratorio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nombre = request.getParameter("txtLaboratorio");
+		LaboratorioDTO obj = new LaboratorioDTO();
+		obj.setNom_lab(nombre);
+		
+		serviLab.registrarLaboratorio(obj);
+		listar(request, response);
+	}
+
+	private void buscarProJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		int cod = Integer.parseInt(request.getParameter("cod"));
+		ProductoDTO producto = serviProducto.buscaProducto(cod);
+		Gson gson = new Gson();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(gson.toJson(producto));
+	}
+
+	private void listarPorJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//String term = request.getParameter("term");
+		List<ProductoDTO> listadoPro = serviProducto.listaProducto();
+		//System.out.println("term");
+		for (ProductoDTO productoDTO : listadoPro) {
+			System.out.println("Producto: "+productoDTO.getNom_prod());
+			System.out.println("Producto: "+productoDTO.getCod_prod());
+		}
+		Gson gson = new Gson();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(gson.toJson(listadoPro));
 	}
 
 	private void buscarPorNombre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

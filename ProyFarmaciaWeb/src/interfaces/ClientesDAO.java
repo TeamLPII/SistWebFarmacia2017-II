@@ -11,4 +11,5 @@ public interface ClientesDAO {
 	public int actualizarCliente(ClientesDTO objC);
 	public int eliminarCliente(int cod);
 	public List<ClientesDTO> buscarPorNombre(String nombre);
+	public ClientesDTO buscarPorDNI(String dni);
 }

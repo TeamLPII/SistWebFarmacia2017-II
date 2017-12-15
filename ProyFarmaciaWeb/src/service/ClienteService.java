@@ -31,5 +31,9 @@ public class ClienteService {
 	public List<ClientesDTO> buscarPorNombre(String nombre){
 		return objCli.buscarPorNombre(nombre);	
 	}
+	
+	public ClientesDTO buscarPorDNI(String dni){
+		return objCli.buscarPorDNI(dni);
+	}
 
 }

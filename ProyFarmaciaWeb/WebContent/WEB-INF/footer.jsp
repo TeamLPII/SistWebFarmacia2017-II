@@ -23,11 +23,18 @@
 <!--     <script src="js/empleado.js"></script> -->
 	<script defer src="js/jquery.ambiance.js"></script>
 	<script defer src="js/jquery.bootstrap-growl.min.js"></script>
+	<script defer src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<scrip defer src="js/jquery.easy-autocomplete.min.js"></scrip>
+	<scrip defer src="js/jquery.tabletojson.min.js"></scrip>
+	<scrip defer src="js/pace.min.js"></scrip>
+	<script defer src="js/bootstrap-waitingfor.min.js"></script>
 	
     <script defer="defer" src="js/empleado.js"></script>
     <script defer src="js/mantenimientoCliente.js"></script>
     <script defer src="js/mantenimientoProducto.js"></script>
 	<script defer src="js/alertas.js"></script>
+	<script defer src="js/mantenimientoVentas.js"></script>
+	<script defer src="js/autocomplete-combo.js"></script>
     
 </body>
 </html>
