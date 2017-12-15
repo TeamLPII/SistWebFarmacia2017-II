@@ -17,7 +17,7 @@ public class MysqlEmpleadoDAO implements EmpleadoDAO {
 	private final String OBTENERUSUARIO = "SELECT * FROM Empleado WHERE Usuario=? AND Clave=?";
 	private final String ELIMINAREMPLEADO = "DELETE FROM Empleado WHERE idEmpleado=?";
 	private final String ACTUALIZAREMPLEADO = "UPDATE Empleado SET Nombre=?, PrimerApellido=?, SegundoApellido=?, "
-			+ "FechaNacimiento=?, FechaIngreso=?, Usuario=?, Clave=?, IdCargo=?, Telefono=? WHERE IdEmpleado=?";
+			+ "FechaNacimiento=?, FechaIngreso=?, Usuario=?, Clave=MD5(?), IdCargo=?, Telefono=? WHERE IdEmpleado=?";
 	private final String INSERTAREMPLEADO = "INSERT INTO Empleado "
 			+ "(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, FechaIngreso, Usuario, Clave, IdCargo, Telefono)"
 			+ " VALUES(?, ?, ?, ?, ?, ?, MD5(?), ?, ?)";
