@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS Empleado (
   FechaNacimiento DATE NOT NULL,
   FechaIngreso    DATETIME DEFAULT CURRENT_TIMESTAMP,
   Usuario         VARCHAR(16) NOT NULL,
-  Clave           VARCHAR(16) NOT NULL,
+  Clave           VARCHAR(32) NOT NULL,
   IdCargo         TINYINT UNSIGNED NOT NULL,
   Telefono        CHAR(9) NULL,
   PRIMARY KEY (IdEmpleado),
