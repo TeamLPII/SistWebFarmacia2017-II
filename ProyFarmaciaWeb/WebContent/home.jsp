@@ -46,10 +46,22 @@
         } %>
         </div>    	
     	
-        <div class="row text-info">
+        <div class="row text-info mb-3">
             <div class="col">
                 <h2 class="text-center font-weight-bold"> Bienvenido a <span><img src="img/color/logo.svg"> SysFarma</span></h2>
             </div>           
+        </div>
+        <div class="row">
+            <div class="col text-muted small">
+	            <h4 class="text-center">Desarrolladores</h4>
+	            <ul class="list-group text-center">
+	                <li class="list-group-item">Nielsen R. Puma J.</li>
+	                <li class="list-group-item">Reyder M. Solgada P.</li>
+	                <li class="list-group-item">Edgar B. Figueredo R.</li>
+	                <li class="list-group-item">Dante M. Tataje G.</li>
+	            </ul>
+	            <p>Lenguaje de Programación II - SJL- 2017</p>
+            </div>
         </div>
         <!-- <div class="row">
         	 <div class="col d-block d-flex justify-content-center">
